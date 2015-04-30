@@ -6,13 +6,14 @@ tempoiq-python/setup.py
 Copyright (c) 2012-2015 TempoDB Inc. All rights reserved.
 """
 
+import re
 from setuptools import setup
 
 
 install_requires = [
-    'python-dateutil',
-    'requests>=1.0',
-    'simplejson',
+    'python-dateutil >=2.4',
+    'requests >=2.5, !=2.6.1, !=2.6.2',
+    'simplejson >=3.6',
     'pytz',
     'sphinx'
 ]
@@ -22,9 +23,16 @@ tests_require = [
     'unittest2',
 ]
 
+version = ''
+with open('tempoiq/__init__.py', 'r') as fd:
+    version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]',
+                        fd.read(), re.MULTILINE).group(1)
+if not version:
+    raise RuntimeError('Cannot find version information')
+
 setup(
     name="tempoiq",
-    version="1.0.3",
+    version=version,
     author="TempoIQ Inc",
     author_email="aaron.brenzel@tempoiq.com",
     url="http://github.com/tempoiq/tempoiq-python/",
