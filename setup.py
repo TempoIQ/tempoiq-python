@@ -15,7 +15,8 @@ install_requires = [
     'requests >=2.5, !=2.6.1, !=2.6.2',
     'simplejson >=3.6',
     'pytz',
-    'sphinx'
+    'sphinx',
+    'coverage'
 ]
 
 tests_require = [
